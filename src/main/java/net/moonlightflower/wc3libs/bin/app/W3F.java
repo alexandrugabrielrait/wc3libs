@@ -411,7 +411,8 @@ public class W3F {
 		
 		private void read(@Nonnull Wc3BinInputStream stream, @Nonnull EncodingFormat format) throws BinInputStream.StreamException {
 			switch (format.toEnum()) {
-			case W3F_0x1:
+				case W3F_0x1:
+				case W3F_0x2:
 				read_0x1(stream);
 				
 				break;
@@ -420,8 +421,9 @@ public class W3F {
 		
 		private void write(@Nonnull Wc3BinOutputStream stream, @Nonnull EncodingFormat format) {
 			switch (format.toEnum()) {
-			case AUTO:
-			case W3F_0x1: {
+				case AUTO:
+				case W3F_0x1: {
+				case W3F_0x2: {
 				write_0x1(stream);
 				
 				break;
@@ -500,7 +502,8 @@ public class W3F {
 		
 		private void read(@Nonnull Wc3BinInputStream stream, @Nonnull EncodingFormat format) throws BinInputStream.StreamException {
 			switch (format.toEnum()) {
-			case W3F_0x1:
+				case W3F_0x1:
+				case W3F_0x2:
 				read_0x1(stream);
 				
 				break;
@@ -509,8 +512,9 @@ public class W3F {
 		
 		private void write(@Nonnull Wc3BinOutputStream stream, @Nonnull EncodingFormat format) {
 			switch (format.toEnum()) {
-			case AUTO:
-			case W3F_0x1: {
+				case AUTO:
+				case W3F_0x1:
+				case W3F_0x2: {
 				write_0x1(stream);
 				
 				break;
@@ -583,11 +587,13 @@ public class W3F {
 	public static class EncodingFormat extends Format<EncodingFormat.Enum> {
 		public enum Enum {
 			AUTO,
-			W3F_0x1
+			W3F_0x1,
+			W3F_0x2
 		}
 		
 		public final static EncodingFormat AUTO = new EncodingFormat(Enum.AUTO, -1);
 		public final static EncodingFormat W3F_0x1 = new EncodingFormat(Enum.W3F_0x1, 0x1);
+		public final static EncodingFormat W3F_0x2 = new EncodingFormat(Enum.W3F_0x2, 0x2);
 
 		@Nullable
 		public static EncodingFormat valueOf(@Nonnull Integer version) {
@@ -709,27 +715,28 @@ public class W3F {
 
 	private void read(@Nonnull Wc3BinInputStream stream, @Nonnull EncodingFormat format) throws Exception {
 		switch (format.toEnum()) {
-		case AUTO: {
+			case AUTO: {
 			read_auto(stream);
 			
 			break;
-		}
-		case W3F_0x1: {
+			}
+			case W3F_0x1:
+			case W3F_0x2: {
 			read_0x1(stream);
 			
 			break;
-		}
+			}
 		}
 	}
 	
 	private void write(@Nonnull Wc3BinOutputStream stream, @Nonnull EncodingFormat format) {
 		switch (format.toEnum()) {
-		case AUTO:
-		case W3F_0x1: {
-			write_0x1(stream);
-			
-			break;
-		}
+			case AUTO:
+			case W3F_0x1:
+			case W3F_0x2: {
+				write_0x1(stream);
+				break;
+			}
 		}
 	}
 	
