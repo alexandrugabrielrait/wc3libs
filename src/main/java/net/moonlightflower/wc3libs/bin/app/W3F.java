@@ -611,6 +611,7 @@ public class W3F {
 
 		try {
 			stream.checkFormatVersion(EncodingFormat.W3F_0x2.getVersion(), version);
+			stream.readInt32("backgroundVersion");
 		}
 		catch (BinInputStream.StreamException exception)
 		{
