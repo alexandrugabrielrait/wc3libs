@@ -609,7 +609,13 @@ public class W3F {
 	private void read_0x1(@Nonnull Wc3BinInputStream stream) throws BinInputStream.StreamException {
 		int version = stream.readInt32("version");
 
-		stream.checkFormatVersion(EncodingFormat.W3F_0x1.getVersion(), version);
+		try {
+			stream.checkFormatVersion(EncodingFormat.W3F_0x2.getVersion(), version);
+		}
+		catch (StreamException exception)
+		{
+			stream.checkFormatVersion(EncodingFormat.W3F_0x1.getVersion(), version);
+		}
 
 		setSavesAmount(stream.readInt32("savesAmount"));
 		setEditorVersion(stream.readInt32("editorVersion"));
