@@ -608,7 +608,7 @@ public class W3F {
 
 	private void read_0x1(@Nonnull Wc3BinInputStream stream) throws BinInputStream.StreamException {
 		int version = stream.readInt32("version");
-		boolealn version2 = false;
+		boolean version2 = false;
 
 		try {
 			stream.checkFormatVersion(EncodingFormat.W3F_0x2.getVersion(), version);
