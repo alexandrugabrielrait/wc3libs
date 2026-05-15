@@ -608,10 +608,11 @@ public class W3F {
 
 	private void read_0x1(@Nonnull Wc3BinInputStream stream) throws BinInputStream.StreamException {
 		int version = stream.readInt32("version");
+		boolealn version2 = false;
 
 		try {
 			stream.checkFormatVersion(EncodingFormat.W3F_0x2.getVersion(), version);
-			stream.readInt32("backgroundVersion");
+			version2 = true;
 		}
 		catch (BinInputStream.StreamException exception)
 		{
@@ -642,6 +643,9 @@ public class W3F {
 			setTerrainFog(new TerrainFog(terrainFogType, terrainFogZStart, terrainFogZEnd, terrainFogDensity, terrainFogColor));
 
 		setUIRace(UIRace.valueOf(stream.readInt32("uiRace")));
+
+		if (version2)
+			stream.readInt32("backgroundVersion");
 
 		int mapsCount = stream.readInt32("mapsCount");
 
