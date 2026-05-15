@@ -612,7 +612,7 @@ public class W3F {
 		try {
 			stream.checkFormatVersion(EncodingFormat.W3F_0x2.getVersion(), version);
 		}
-		catch (StreamException exception)
+		catch (BinInputStream.StreamException exception)
 		{
 			stream.checkFormatVersion(EncodingFormat.W3F_0x1.getVersion(), version);
 		}
